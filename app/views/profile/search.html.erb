@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+  	<% @users.each do |user| %>
+	        <div class="col-lg-4">
+	          <div class="thumbnail">
+		          <img class="img-circle" src="http://lorempixel.com/140/140/people" alt="Generic placeholder image" width="140" height="140">
+		         	<div class="caption">
+			          <h2> <%= user.first_name %> <%= user.last_name %></h2>
+			          <p>Email: <%= user.email %></p>
+			          <p>Seguidores: <%= user.followers.count %></p>
+			          <p>Seguindo: <%= user.followed.count %></p>
+			          <%= link_to 'Seguir', profile_follow_path(id: user.id), method: :follow, data: { confirm: 'Está certo disso?' } , class: "btn btn-default" %>
+			          <%= link_to 'Perfil', { controller: "profile", action: "show", id: user.id } , class: "btn btn-default" %>
+		         	</div>
+	          </div>
+	        </div><!-- /.col-lg-4 -->
+  	<% end %>
+  </div>
+</div>

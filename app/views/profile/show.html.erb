@@ -1,35 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First Name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last Name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<h1>Listing Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.posts.each do |post| %>
-      <tr>
-        <td><%= post.content %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="http://lorempixel.com/140/140/people" alt="Generic placeholder image" width="140" height="140">
+          <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
+          <p>Email: <%= @user.email %></p>
+          <p>Seguidores: <%= @user.followers.count %></p>
+          <p>Seguindo: <%= @user.followed.count %></p>
+          <%= link_to 'Seguir', profile_follow_path(id: @user.id), method: :follow, data: { confirm: 'Está certo disso?' } , class: "btn btn-default" %>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-8">
+         <% @user.posts.each do |post| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-inline">
+                <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
+                <h4 class="form-control"><%= post.user.first_name %></h4> 
+              </div>
+            </div>
+            <div class="panel-body">
+              <%= post.content %>
+            </div>
+          </div>
+        <% end %>
+        </div><!-- /.col-lg-4 -->
+  </div>
+</div>

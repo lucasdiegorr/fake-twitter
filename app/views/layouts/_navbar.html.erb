@@ -12,7 +12,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <% unless current_user.blank? %>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-form navbar-right">
+              <%= form_tag(profile_search_path, :method => "get", id: "search-form", class: "navbar-nav navbar-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Pesquisar...", class: "form-control" %>
+              <%= submit_tag "Pesquisar", class: "btn btn-default" %>
+              <% end %>
               <li class="dropdown navbar-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.first_name  %> <span class="caret"></span></a>
                 <ul class="dropdown-menu">

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  
+  post 'profile/follow', to: 'profile#follow'
+
   get 'profile/myprofile'
 
-  get '/profile/:id', to: 'profile#show'
+  get 'profile/show/:id', to: 'profile#show'
+
+  get 'profile/search', to: 'profile#search'
 
   resources :posts
   root 'home#index'
