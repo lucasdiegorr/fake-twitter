@@ -1,21 +1,16 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <fieldset>
+    <div class="form-inputs">
+      <div class="row">
+          <%= f.input :content, label: false, input_html:{ class: 'form-control'} %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  </fieldset>
+  <br>
+  <div class="form-actions">
+    <%= f.button :submit, "Criar Post" , class: 'btn btn-default btn-primary' %>
+    <%= link_to 'Cancelar', root_path, class: 'btn btn-default pull-right' %>
   </div>
 <% end %>
