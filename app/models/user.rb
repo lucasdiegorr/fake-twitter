@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_and_belongs_to_many :follows
 
-  def admin?
+  def self.admin?
   	self.admin
   end
 
@@ -17,5 +17,9 @@ class User < ActiveRecord::Base
 
   def followed
   	Follow.where(followed: self.id)
+  end
+
+  def following?(id = nil)
+    self.followed.exists?(follower_id: id)
   end
 end

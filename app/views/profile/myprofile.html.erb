@@ -1,12 +1,25 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
+  <%= render 'alerts' %>
   <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="http://lorempixel.com/140/140/people" alt="Generic placeholder image" width="140" height="140">
-          <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
-          <p>Email: <%= @user.email %></p>
-          <p>Seguidores: <%= @user.followers.count %></p>
-          <p>Seguindo: <%= @user.followed.count %></p>
+          <div class="thumbnail">
+            <img class="img-circle" src="http://lorempixel.com/140/140/people" alt="Generic placeholder image" width="140" height="140">
+            <div class="caption text-center">
+              <h2> <%= @user.first_name %> <%= @user.last_name %></h2>
+              <p>Email: <%= @user.email %></p>
+              <button class="btn btn-default btn-block" type="button">
+                Publicações <span class="badge"><%= @user.posts.count %></span>
+              </button>
+              <br>
+              <button class="btn btn-primary btn-block" type="button">
+                Seguidores <span class="badge"><%= @user.followers.count %></span>
+              </button>
+              <br>
+              <button class="btn btn-success btn-block" type="button">
+                Seguindo <span class="badge"><%= @user.followed.count %></span>
+              </button>
+            </div>
+          </div>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-8">
          <% @user.posts.each do |post| %>
