@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'profile/myprofile'
+
+  get '/profile/:id', to: 'profile#show'
+
   resources :posts
   root 'home#index'
 

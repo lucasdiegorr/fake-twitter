@@ -1,15 +1,21 @@
-<% if user_signed_in?  %>
-	<%= link_to "Sair" , destroy_user_session_path, method: :delete %>
-
-	<%= link_to 'New Post', new_post_path %>
-
-  <%= link_to "Profile", profile_myprofile_path %>
-
-<% else %>
-	<%= link_to "Entrar", new_user_session_path, class: "current"%>
-<% end  %>
-
 <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<h1>Listing Posts</h1>
 
 <table>
   <thead>
@@ -20,7 +26,7 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @user.posts.each do |post| %>
       <tr>
         <td><%= post.content %></td>
         <td><%= link_to 'Show', post %></td>
