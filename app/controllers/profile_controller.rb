@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
 	before_action :authenticate_user!
+  before_action :set_paper_trail_whodunnit
   before_action :set_user, only: [:show, :destroy]
   def myprofile
   	@user = User.find(current_user.id)

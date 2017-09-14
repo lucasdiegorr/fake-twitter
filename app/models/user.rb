@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_paper_trail
+  
   has_many :posts, dependent: :destroy
 
   validates :first_name, presence: true, length: { maximum: 100 }
