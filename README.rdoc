@@ -1,28 +1,12 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+= Fake Twitter
 
-Things you may want to cover:
+Simple application with some Twitter features
 
-* Ruby version
+https://codeclimate.com/files/50920063f3ea00286d000008.png 
 
-* System dependencies
+{Code statistics}[https://codeclimate.com/github/lucasdiegorr/fake-twitter]
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Link to application
+{Fake Twitter}[https://fake-twitter-rails.herokuapp.com/]
