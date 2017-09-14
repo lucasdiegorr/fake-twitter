@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
-	before_action :set_user, only: [:show]
+	before_action :authenticate_user!
+  before_action :set_user, only: [:show]
   def myprofile
   	@user = User.find(current_user.id)
   end

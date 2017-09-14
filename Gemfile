@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Devise
 gem 'devise'
+gem 'devise-i18n'
+
 gem 'cocoon'
 gem 'simple_form'
 gem 'kaminari'

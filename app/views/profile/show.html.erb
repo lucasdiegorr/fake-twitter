@@ -34,6 +34,11 @@
               <div class="form-inline">
                 <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
                 <h4 class="form-control"><%= post.user.first_name %></h4> 
+                <% if current_user.admin? %>
+                  <div class="pull-right">
+                  <%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Está certo disso?' }, class: "btn btn-danger" %>
+                  </div>
+                <% end %>
               </div>
             </div>
             <div class="panel-body">
