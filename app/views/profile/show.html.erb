@@ -24,28 +24,38 @@
               <% else %>
                 <%= link_to 'Seguir', profile_follow_path(id: @user.id), method: :follow, data: { confirm: 'Está certo disso?' } , class: "btn btn-primary" %>
               <% end %>
+              <% if current_user.admin? %>
+                <%= link_to 'Apagar Conta', profile_destroy_path(id: @user.id), method: :destroy, data: { confirm: 'Está certo disso?' } , class: "btn btn-primary" %>
+              <% end %>
             </div>
           </div>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-8">
-         <% @user.posts.each do |post| %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="form-inline">
-                <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
-                <h4 class="form-control"><%= post.user.first_name %></h4> 
-                <% if current_user.admin? %>
-                  <div class="pull-right">
-                  <%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Está certo disso?' }, class: "btn btn-danger" %>
-                  </div>
-                <% end %>
+          <% if @user.posts.count > 0 %>
+           <% @user.posts.each do |post| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="form-inline">
+                  <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
+                  <h4 class="form-control"><%= post.user.first_name %></h4> 
+                  <% if current_user.admin? %>
+                    <div class="pull-right">
+                    <%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Está certo disso?' }, class: "btn btn-danger" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="panel-body">
+                <%= post.content %>
               </div>
             </div>
-            <div class="panel-body">
-              <%= post.content %>
+          <% end %>
+          <% else %> 
+            <div class="jumbotron">
+              <h1>Que pena...</h1>
+              <p>Mas <%= @user.first_name %> ainda não criou nenhum post.</p>
             </div>
-          </div>
-        <% end %>
+          <% end %>
         </div><!-- /.col-lg-4 -->
   </div>
 </div>

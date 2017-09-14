@@ -22,28 +22,35 @@
           </div>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-8">
-         <% @user.posts.each do |post| %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="form-inline">
-                <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
-                <h4 class="form-control"><%= post.user.first_name %></h4> 
-                <div class="btn-group pull-right">
-                  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                    Ações <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><%= link_to 'Editar', edit_post_path(post) %></li>
-                    <li><%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Está certo disso?' } %></li>
-                  </ul>
+          <% if @user.posts.count > 0  %>
+           <% @user.posts.each do |post| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="form-inline">
+                  <img src="http://lorempixel.com/140/140/people" class="img-circle" width="48" height="48">
+                  <h4 class="form-control"><%= post.user.first_name %></h4> 
+                  <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                      Ações <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                      <li><%= link_to 'Editar', edit_post_path(post) %></li>
+                      <li><%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Está certo disso?' } %></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+              <div class="panel-body">
+                <%= post.content %>
+              </div>
             </div>
-            <div class="panel-body">
-              <%= post.content %>
+          <% end %>
+          <% else %>
+            <div class="jumbotron">
+              <h1>Que pena...</h1>
+              <p>Você ainda não criou nenhum post. Vamos lá e comece a escrever.</p>
             </div>
-          </div>
-        <% end %>
+          <% end %>
         </div><!-- /.col-lg-4 -->
   </div>
 </div>

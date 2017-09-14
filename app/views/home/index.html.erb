@@ -7,17 +7,24 @@
     </div>
   <% end  %>
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="form-inline">
-            <img src="http://lorempixel.com/48/48/people" class="img-circle">
-            <h4 class="form-control"><%= post.user.first_name %></h4> 
+    <% if @posts.count > 0 %>
+      <% @posts.each do |post| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="form-inline">
+              <img src="http://lorempixel.com/48/48/people" class="img-circle">
+              <h4 class="form-control"><%= post.user.first_name %></h4> 
+            </div>
+          </div>
+          <div class="panel-body">
+            <%= post.content %>
           </div>
         </div>
-        <div class="panel-body">
-          <%= post.content %>
-        </div>
+      <% end %>
+    <% else %>
+      <div class="jumbotron">
+        <h1>Que pena...</h1>
+        <p>Não há post no feed.</p>
       </div>
     <% end %>
   </div>

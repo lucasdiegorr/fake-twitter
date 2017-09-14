@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
 	before_action :authenticate_user!
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :destroy]
   def myprofile
   	@user = User.find(current_user.id)
   end
@@ -15,7 +15,8 @@ class ProfileController < ApplicationController
     @follow = Follow.new(follower_id: params[:id], followed_id: current_user.id)
     respond_to do |format|
       if @follow.save
-        format.html { redirect_to root_path, notice: 'Follow was successfully created.' }
+
+        format.html { redirect_to root_path, notice: "Agora você está seguindo #{User.find(params[:id]).first_name} #{User.find(params[:id]).last_name}." }
         format.json { render :show, status: :created, location: @follow }
       else
         format.html { render :new }
@@ -26,6 +27,17 @@ class ProfileController < ApplicationController
 
   def search
       @users = User.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+  end
+
+  def destroy
+    @user.followers.destroy_all
+    @user.followed.destroy_all
+    @user.posts.destroy_all
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'O usuário foi apagado com sucesso.' }
+      format.json { head :no_content }
+    end
   end
 
   private

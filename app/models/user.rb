@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_and_belongs_to_many :follows
+  #has_and_belongs_to_many :follows
 
   def self.admin?
   	self.admin

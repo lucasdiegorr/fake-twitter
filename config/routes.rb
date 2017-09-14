@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   post 'profile/follow', to: 'profile#follow'
+  
+  post 'profile/destroy', to: 'profile#destroy'
 
   get 'profile/myprofile'
 
