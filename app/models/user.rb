@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :posts
-  #has_and_belongs_to_many :follows
+  has_many :posts, dependent: :destroy
+
+  validates :first_name, presence: true, length: { maximum: 100 }
+  validates :last_name, presence: true, length: { maximum: 100 }
 
   def self.admin?
   	self.admin

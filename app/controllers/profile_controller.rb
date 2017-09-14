@@ -26,7 +26,7 @@ class ProfileController < ApplicationController
   end
 
   def search
-      @users = User.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      @users = User.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").where("id != ?", current_user.id)
   end
 
   def destroy
